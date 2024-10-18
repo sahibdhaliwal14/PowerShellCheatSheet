@@ -1,0 +1,1 @@
+﻿restart-computer -ComputerName PC123 -Credential domain\user -force

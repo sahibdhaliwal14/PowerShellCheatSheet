@@ -1,0 +1,32 @@
+Set-ADAccountPassword -Identity "user" -Reset -NewPassword (ConvertTo-SecureString -AsPlainText "password" -Force)
+# reset/set password 
+
+
+
+# make new group
+New-ADGroup -Name “Finance” -GroupScope Universal -ManagedBy “admin”
+
+
+#auto download programs 
+$url = "\\SERVER\Client Apps\your_program.exe"
+$outputPath = "C:\Path\To\Your\Local\Directory\your_program.exe"
+
+Start-BitsTransfer -Source $url -Destination $outputPath
+
+
+
+#make new folder 
+New-Item -ItemType Directory -Path "C:\Path\To\NewFolder"
+# Assign folder permissions to a group 
+icacls "C:\Path\To\NewFolder" /grant "GroupName:(OI)(CI)F"
+
+#map network drives
+New-PSDrive -Name X -PSProvider FileSystem -Root "\\server\share" -Persist -Scope Global
+
+
+# add user to group 
+Add-ADGroupMember -Identity "drive name" -Members user1, user2, user3
+
+
+# Create a new user
+New-LocalUser -Name "User03" -Password (Read-Host -AsSecureString) -FullName "Third User" -Description "Description of this account."
